@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markdown 协同编辑器</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Markdown 协同编辑器</h1>
+            <div class="user-info">
+                <span id="currentUser"></span>
+                <span id="onlineCount"></span>
+            </div>
+        </header>
+        
+        <div class="main-content">
+            <div class="editor-pane">
+                <div class="pane-header">编辑器</div>
+                <div class="editor-wrapper">
+                    <div id="cursorsLayer" class="cursors-layer"></div>
+                    <textarea id="editor" spellcheck="false"></textarea>
+                </div>
+            </div>
+            
+            <div class="preview-pane">
+                <div class="pane-header">预览</div>
+                <div id="preview" class="preview-content"></div>
+            </div>
+        </div>
+        
+        <footer>
+            <button id="historyBtn">历史回放</button>
+            <span id="status">已连接</span>
+        </footer>
+    </div>
+    
+    <div id="historyModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>编辑历史回放</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="timeline">
+                    <input type="range" id="timelineSlider" min="0" max="100" value="0">
+                    <div class="timeline-info">
+                        <span id="currentStep">0</span> / <span id="totalSteps">0</span>
+                    </div>
+                </div>
+                <div class="playback-controls">
+                    <button id="playBtn">播放</button>
+                    <button id="pauseBtn">暂停</button>
+                    <button id="resetBtn">重置</button>
+                </div>
+                <div class="playback-info">
+                    <p>操作用户: <span id="opUser">-</span></p>
+                    <p>操作时间: <span id="opTime">-</span></p>
+                    <p>操作类型: <span id="opType">-</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="/static/app.js"></script>
+</body>
+</html>
