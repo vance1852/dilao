@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markdown 协同编辑器</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="header">
+        <h1>Markdown 协同编辑器</h1>
+        <div class="user-info">
+            <span class="current-user">当前用户: <span id="username" class="username"></span></span>
+            <div id="user-list" class="user-list"></div>
+        </div>
+        <button id="history-btn" class="history-btn">历史回放</button>
+    </div>
+
+    <div class="container">
+        <div class="editor-container">
+            <div class="editor-header">编辑区</div>
+            <div class="editor-wrapper">
+                <textarea id="editor" class="editor" spellcheck="false"></textarea>
+                <div id="cursors-layer" class="cursors-layer"></div>
+            </div>
+        </div>
+        <div class="preview-container">
+            <div class="preview-header">预览区</div>
+            <div id="preview" class="preview"></div>
+        </div>
+    </div>
+
+    <div id="history-modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>编辑历史回放</h2>
+                <button id="close-modal" class="close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="timeline-controls">
+                    <button id="play-btn" class="control-btn">▶ 播放</button>
+                    <button id="pause-btn" class="control-btn">⏸ 暂停</button>
+                    <button id="reset-btn" class="control-btn">⏮ 重置</button>
+                    <span class="time-display">
+                        <span id="current-step">0</span> / <span id="total-steps">0</span>
+                    </span>
+                </div>
+                <input type="range" id="timeline-slider" class="timeline-slider" min="0" max="0" value="0">
+                <div class="replay-content">
+                    <div id="replay-editor" class="replay-editor"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.2/marked.min.js"></script>
+    <script src="/static/js/client.js"></script>
+</body>
+</html>
